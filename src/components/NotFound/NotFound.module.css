@@ -1,0 +1,13 @@
+.notfoundwrapper {
+  background-image: url(../images/Destinesia.gif);
+  height: 260px;
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  margin-left: auto;
+  margin-right: auto;
+}
