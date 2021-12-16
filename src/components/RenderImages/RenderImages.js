@@ -30,7 +30,7 @@ export default function RenderImages({ searchQuery }) {
 
     API.imagesAPI({ searchQuery, page })
       .then(query => {
-        if (query.hits.length === 0) {
+        if (!query.hits.length) {
           return Promise.reject(
             new Error(`Results for: ${searchQuery} not found.`),
           );
@@ -85,8 +85,7 @@ export default function RenderImages({ searchQuery }) {
     return (
       <>
         <ImageGallery images={images} />
-        <Button onClick={handleLoadmoreButton} />
-        {/* {status === Status.PENDING ? (<Loader />) : ( <Button onClick={handleLoadmoreButton} />)} */}
+        {images.length > 11 && <Button onClick={handleLoadmoreButton} />}
       </>
     );
   }
@@ -95,6 +94,13 @@ export default function RenderImages({ searchQuery }) {
 RenderImages.propTypes = {
   searchQuery: PropTypes.string,
 };
+
+
+
+
+
+
+
 
 // export default class RenderImages extends Component {
 //   state = {
