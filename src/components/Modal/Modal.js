@@ -1,5 +1,5 @@
 import { createPortal } from 'react-dom';
-import { useEffect, useCallback } from 'react';
+import { useEffect } from 'react';
 // import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import s from './Modal.module.css';
@@ -14,8 +14,8 @@ export default function Modal({
   onArrowLeft,
   onArrowRight,
 }) {
-  const handlekeyDown = useCallback(
-    event => {
+  useEffect(() => {
+    const handlekeyDown = event => {
       if (event.code === 'Escape') {
         onClose();
       }
@@ -25,14 +25,10 @@ export default function Modal({
       if (event.key === 'ArrowRight') {
         onArrowRight();
       }
-    },
-    [onClose, onArrowLeft, onArrowRight],
-  );
-
-  useEffect(() => {
+    };
     window.addEventListener('keydown', handlekeyDown);
     return () => window.removeEventListener('keydown', handlekeyDown);
-  }, [handlekeyDown]);
+  }, [onClose, onArrowLeft, onArrowRight]);
 
   const handleLeft = () => {
     onArrowLeft();
